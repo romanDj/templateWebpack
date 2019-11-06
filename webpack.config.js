@@ -1,20 +1,22 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: {main: './src/index.js'},
+    entry: { main: './src/index.js'},
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js'
+        filename: process.env.production ? '[name].[chunkhash].js' : '[name].[hash].js'
     },
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader"
                 }
@@ -47,19 +49,20 @@ module.exports = {
             filename: 'style.[contenthash].css',
         }),
         new HtmlWebpackPlugin({
-            inject: false,
             hash: true,
             template: './src/index.html',
             filename: 'index.html'
         }),
+        new webpack.HotModuleReplacementPlugin(),
         new WebpackMd5Hash()
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
-        compress: true,
-        bonjour: true,
         port: 9000,
+        open: true,
+        historyApiFallback:  true,
         hot: true,
-        open: true
+        quiet: true,
+        clientLogLevel: 'silent'
     }
 };
