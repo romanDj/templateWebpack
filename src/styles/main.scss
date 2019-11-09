@@ -1,0 +1,39 @@
+//Главный файл стилей
+@import "smart-grid";
+@import "Variable";
+
+@include reset();
+
+/* Параметры тени */
+@mixin shadow($size){
+    @if $size == smalle{
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }@else if $size == middle{
+        box-shadow: 0 0 7px rgba(0,0,0,0.2);
+    }@else if $size == big {
+        box-shadow: 0 0 9px rgba(0,0,0,0.4);
+    }
+}
+
+*{
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+body{
+    background: $background-color;
+}
+
+.wrapper{
+    @include wrapper();
+}
+
+
+
+//Подключение стилей компонентов
+@import "Button";
+
+
+
+
+

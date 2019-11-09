@@ -1,9 +1,15 @@
-import "./scss/main.scss";
+import "./styles/main.scss";
 import React from "react";
 import ReactDOM from "react-dom";
+import Button from "./ui/Button";
 
-console.log("hello, world");
-
+/**
+ * ui kit
+ */
 ReactDOM.render((
-  <div>Hello!</div>
+  <div className="wrapper">
+      <p>Hello!</p>
+      <Button text="Click me!" click={()=>{
+          console.log("click callback");}}/>
+  </div>
 ), document.getElementById('root'));

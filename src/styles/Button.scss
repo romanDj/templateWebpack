@@ -1,0 +1,18 @@
+.ui_button{
+  @include shadow(smalle);
+  border: none;
+  width: auto;
+  transition: 200ms;
+  color: white;
+  background: $color-primary-0;
+  padding: 5px;
+  border-radius: 2px;
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background: $color-primary-2;
+  }
+}
