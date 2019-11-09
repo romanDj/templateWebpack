@@ -1,6 +1,7 @@
-import "./scss/style.scss";
+import "./scss/main.scss";
 import React from "react";
 import ReactDOM from "react-dom";
+
 console.log("hello, world");
 
 ReactDOM.render((
