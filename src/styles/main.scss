@@ -1,6 +1,7 @@
 //Главный файл стилей
 @import "smart-grid";
 @import "Variable";
+@import "Fonts";
 
 @include reset();
 
@@ -16,7 +17,7 @@
 }
 
 *{
-    font-family: Arial, sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: 16px;
 }
 
@@ -28,10 +29,19 @@ body{
     @include wrapper();
 }
 
+.ui_kit{
+    @include row-flex();
+    flex-direction: column;
+    align-items: flex-start;
 
+    & *{
+        margin: 5px;
+    }
+}
 
 //Подключение стилей компонентов
 @import "Button";
+@import "Navbar";
 
 
 
