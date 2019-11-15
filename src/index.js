@@ -10,8 +10,10 @@ import {Navbar, NavbarItem} from "./ui/Navbar";
 ReactDOM.render((
     <>
         <Navbar onClick={(e)=>{console.log(e)}}>
-            <NavbarItem key="page1">Page 1</NavbarItem>
-            <NavbarItem key="page2"><a href="https://google.com">Page 2</a></NavbarItem>
+            <NavbarItem key="page1">Главная</NavbarItem>
+            <NavbarItem key="page2">Заклинания</NavbarItem>
+            <NavbarItem key="page3">Войти</NavbarItem>
+            <NavbarItem key="page4">Выйти</NavbarItem>
         </Navbar>
         <div className="wrapper">
             <div className="ui_kit">
