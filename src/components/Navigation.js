@@ -4,6 +4,7 @@ import logo from "../statics/images/icon_ico.png";
 //верхняя навигационная панель
 function Navigation(props) {
     const [profileMenu, setProfileMenu] = useState(false);
+    const [sideMenu, setSideMenu] = useState(true);
 
     //hooks, выбор вкладки, хранить текущую вкладку, и передавать соответствующй набор стилей
     let navbarItems = [
@@ -18,13 +19,12 @@ function Navigation(props) {
         {key: "page2", content: "Заклинания"},
         {key: "page6", content: "Магические предметы"},
         {key: "page3", content: "Бестиарий"},
-        {key: "page4", content: "Классы"},
-        {key: "page22", content: "Рассы"}
+        {key: "page100", content: "Создать персонажа"},
     ];
 
     return <>
         <div className="ui_navbar" onClick={() => (profileMenu === true && setProfileMenu(false))}>
-            <div className="ui_navbar_item">
+            <div className="ui_navbar_item" onClick={() => setSideMenu(!sideMenu)}>
                 <i className="fas fa-bars"></i>
             </div>
             <div className="bs_label">
@@ -41,7 +41,7 @@ function Navigation(props) {
         </div>
 
         <div className="ui_sidebar_content">
-            <div className="ui_sidebar">
+            <div className={ sideMenu ? "ui_sidebar" : "ui_sidebar ui_sidebar-close" }>
                 {ListItems(sideItems, "ui_sidebar_item")}
             </div>
 
@@ -59,8 +59,8 @@ function ListItems(items, classStyle) {
     };
     //здесь надо будет получить dispatch для роутинга
     return items.map(item => <div key={item.key}
-                                 className={classStyle}
-                                 onClick={() => (item.callback ? item.callback() : callback(item.key))}>
+                                  className={classStyle}
+                                  onClick={() => (item.callback ? item.callback() : callback(item.key))}>
         {item.content}</div>);
 }
 

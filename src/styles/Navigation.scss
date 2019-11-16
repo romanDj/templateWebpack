@@ -89,14 +89,32 @@
   flex-wrap: nowrap;
 
   & .ui_sidebar{
+    transition: margin-left 300ms;
     flex-basis: 200px;
+    margin-left: 0;
+    flex-shrink: 0;
+  }
+
+  & .ui_sidebar-close{
+    margin-left: -200px;
   }
 
   & .ui_content {
     flex-grow: 1;
+    @include xs-block() {
+      flex-basis: 100%;
+      flex-shrink: 0;
+    }
   }
 }
 
+.ui_sidebar{
+  &_item{
+    cursor: pointer;
+    word-wrap: break-word;
+    padding: 8px;
+  }
+}
 
 
 
