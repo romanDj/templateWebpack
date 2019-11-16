@@ -1,5 +1,5 @@
 //Главный файл стилей
-@import "smart-grid";
+@import "utils";
 @import "Variable";
 @import "Fonts";
 
@@ -21,16 +21,23 @@
     font-size: 16px;
 }
 
-body{
-    background: $background-color;
+#root{
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    & .ui_sidebar_content{
+      flex-grow: 1;
+    }
 }
 
-.wrapper{
-    @include wrapper();
+body{
+    background: rgba(128, 99, 194, 0.1);
 }
 
 .ui_kit{
-    @include row-flex();
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
 
@@ -39,10 +46,23 @@ body{
     }
 }
 
+.ui_content{
+    display: flex;
+    -webkit-user-select: none;
+    user-select: none;
+
+    .ui_card{
+        flex-grow: 1;
+        margin: 5px;
+        width: inherit;
+        height: inherit;
+    }
+}
+
 //Подключение стилей компонентов
 @import "Button";
-@import "Navbar";
-
+@import "Navigation";
+@import "Card";
 
 
 
