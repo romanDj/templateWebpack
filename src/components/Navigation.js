@@ -4,7 +4,7 @@ import logo from "../statics/images/icon_ico.png";
 //верхняя навигационная панель
 function Navigation(props) {
     const [profileMenu, setProfileMenu] = useState(false);
-    const [sideMenu, setSideMenu] = useState(true);
+    const [sideMenu, setSideMenu] = useState(window.innerWidth > 560);
 
     //hooks, выбор вкладки, хранить текущую вкладку, и передавать соответствующй набор стилей
     let navbarItems = [
@@ -15,7 +15,7 @@ function Navigation(props) {
     ];
 
     let sideItems = [
-        {key: "page1", content: "Главная", callback: () => console.log("собственное действие")},
+        {key: "page1", content: "Главная", callback: () => console.log("собственное действие"), select: true},
         {key: "page2", content: "Заклинания"},
         {key: "page6", content: "Магические предметы"},
         {key: "page3", content: "Бестиарий"},
@@ -40,12 +40,12 @@ function Navigation(props) {
             </div>
         </div>
 
-        <div className="ui_sidebar_content">
+        <div className="ui_sidebar_content" onClick={() => (profileMenu === true && setProfileMenu(false))}>
             <div className={ sideMenu ? "ui_sidebar" : "ui_sidebar ui_sidebar-close" }>
-                {ListItems(sideItems, "ui_sidebar_item")}
+                {ListItems(sideItems, "ui_sidebar_item", "ui_sidebar_item-select")}
             </div>
 
-            <div className="ui_content" onClick={() => setProfileMenu(false)}>
+            <div className="ui_content">
                 {props.children}
             </div>
         </div>
@@ -53,13 +53,13 @@ function Navigation(props) {
     </>
 }
 
-function ListItems(items, classStyle) {
+function ListItems(items, classStyle, selectStyle = "") {
     let callback = (route) => {
         console.log("Перенаправить -> " + route);
     };
     //здесь надо будет получить dispatch для роутинга
     return items.map(item => <div key={item.key}
-                                  className={classStyle}
+                                  className={classStyle + (item.select ? (" " + selectStyle) : "")}
                                   onClick={() => (item.callback ? item.callback() : callback(item.key))}>
         {item.content}</div>);
 }

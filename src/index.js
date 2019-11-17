@@ -4,7 +4,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Button from "./ui/Button";
 import Navigation from "./components/Navigation";
-import Side from "./components/Side";
 
 /**
  * ui kit
